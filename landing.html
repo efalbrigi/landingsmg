@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio - Swiss Medical</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f7f7f7, #e0e0e0); /* Fondo degradado */
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra para efecto de profundidad */
+        }
+
+        .input-field {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .input-field input {
+            width: 40px;
+            height: 40px;
+            margin: 0 2px;
+            text-align: center;
+            font-size: 20px; /* Aumentar el tamaño de la fuente para mejor legibilidad */
+            border: 2px solid #ddd; /* Borde más visible */
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .input-field span {
+            font-size: 20px;
+            margin: 0 5px;
+            line-height: 40px;
+            color: #333;
+        }
+
+        .input-field .fixed-text {
+            margin: 0 5px;
+            font-size: 20px;
+            line-height: 40px;
+            color: #333;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 20px; /* Aumentar el tamaño del texto en el botón */
+            color: #fff;
+            background-color: #007bff; /* Color azul claro */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: red; /* Azul más oscuro en hover */
+        }
+
+        .button:active {
+            background-color: #004085; /* Azul aún más oscuro en clic */
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="./img/logo-8b7d780389623f53f11afc2918fd8039.svg" alt="Logo Swiss Medical">
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <div>
+                <span class="ingrese">Ingrese su credencial:</span>
+                <div class="input-field" id="credencial">
+                    <span class="fixed-text">800006</span>
+                    <input type="text" maxlength="1">
+                    <input type="text" maxlength="1">
+                    <input type="text" maxlength="1">
+                    <input type="text" maxlength="1">
+                    <input type="text" maxlength="1">
+                    <input type="text" maxlength="1">
+                    <input type="text" maxlength="1">
+                    <span class="fixed-text">xx xxx</span>
+                </div>
+            </div>
+            
+            <button class="button" onclick="handleSubmit()">Ingresar</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('#credencial input').forEach((input, index, inputs) => {
+            input.addEventListener('input', (e) => {
+                // Mover al siguiente campo de entrada cuando se ingresa un dígito
+                if (e.target.nextElementSibling && e.target.value.length >= e.target.maxLength) {
+                    e.target.nextElementSibling.focus();
+                }
+            });
+        });
+
+        function handleSubmit() {
+            const credencial = Array.from(document.querySelectorAll('#credencial input')).map(input => input.value).join('');
+            
+            // Validar el número de credencial
+            const credencialRegex = /^\d{7}$/; // Ajustado para un formato de 7 dígitos
+            if (!credencialRegex.test(credencial)) {
+                alert('Por favor, complete el campo de credencial con 7 dígitos.');
+                return;
+            }
+
+            // Redirigir a la nueva pantalla si todo es válido
+            window.location.href = 'https://asociarme.swissmedical.com.ar/planes'; // URL de redirección
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
