@@ -3,28 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Swiss Medical</title>
+    <title>Página de Contacto - Swiss Medical</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             height: 100vh;
-            background-color: #fff;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            font-family: Arial, sans-serif;
+            color: #333;
+            overflow: hidden;
         }
 
-        .splash-image {
-            max-width: 100%;
-            max-height: 100vh;
-            cursor: pointer; /* Cambia el cursor a una mano al pasar sobre la imagen */
+        .left {
+            background-image: url('../img/fondo.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .logo {
+            margin-bottom: 60px;
+        }
+
+        .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        input, select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 20px;
+            color: #fff;
+            background-color: red;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: rgb(247, 93, 93);
+        }
+
+        .boton {
+            display: flex;
+            justify-content: center;
+        }
+
+        #mensaje-exito {
+            display: none;
+            margin-top: 20px;
+            color: green;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                grid-template-columns: 1fr;
+            }
+
+            .left {
+                display: none;
+            }
+
+            .right {
+                box-shadow: none;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="./page/prueba.html" id="image-link">
-        <img src="./img/Imagen2.png" alt="Imagen de Inicio" class="splash-image">
+    <div class="left"></div>
+
+    <div class="right">
+        <div class="logo">
+            <img src="../img/logo-8b7d780389623f53f11afc2918fd8039.svg" alt="Logo Swiss Medical">
+        </div>
+
+        <div class="container">
+            <div class="form-container">
+                <h2 style="text-align: center;">¡Completa los datos para te contactemos!</h2>
+                <form id="contact-form" onsubmit="handleForm(event)">
+                    <input type="text" name="nombre" placeholder="Nombre y Apellido" required>
+                    <input type="text" name="dni" placeholder="DNI" required>
+                    <input type="tel" name="celular" placeholder="Celular" required>
+                    <input type="email" name="email" placeholder="Correo Electrónico" required>
+
+                    <select name="baja" required>
+                        <option value="" disabled selected>¿Por quién queres cotizar la continuidad?</option>
+                        <option value="grupo-familiar">Todo el grupo familiar</option>
+                        <option value="conyuge">Cónyuge</option>
+                        <option value="hijos">Hijos</option>
+                        <option value="otro familiar">Otro</option>
+                    </select>
+
+                    <div class="boton">
+                        <button type="submit" class="button">Enviar</button>
+                    </div>
+                </form>
+
+                <div id="mensaje-exito">
+                    A la brevedad un asesor se estará contactando con vos.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleForm(event) {
+            event.preventDefault();
+            document.getElementById('contact-form').style.display = 'none';
+            document.getElementById('mensaje-exito').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+Inicio" class="splash-image">
     </a>
 
     <script>
